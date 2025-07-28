@@ -18,21 +18,32 @@ const allowedRegions = [
 const intlMiddleware = createIntlMiddleware(routing);
 
 const keywordRedirectMap: Record<string, string> = {
-    // 'calibration': 'https://home.acecms.in', 
-  // 'acecms': 'https://home.acecms.in',
-  // 'cms': 'https://home.acecms.in',
-  // 'project': 'https://project.acesoftcloud.in',
-  // 'crm': 'https://crm.acesoftcloud.in',
+ 
   'production-management-system': '/products/ace-production-management-system',
+
   'payroll': '/products/ace-profit-stand-alone-payroll',
+
   'ppap': '/products/ace-profit-ppap',
+
   'fixed-asset-management': '/products/ace-fixed-asset-management-on-cloud',
+
   'hrms': '/products/ace-profit-stand-alone-hrms',
+
   'erp': '/products/ace-profit-erp',
+
+
+
   'project': '/products/ace-project-management-software',
+
   'aceproject': '/products/ace-project-management-software',
-  'acecms': '/products/ace-calibration-management-system-on-cloud',
-};
+
+
+
+  'calibration': '/products/ace-calibration-management-system',
+
+  'acecms': '/products/ace-calibration-management-system',
+
+  'cms': '/products/ace-calibration-management-system',};
 
 const knownPaths = new Set([
   '/',
@@ -47,7 +58,7 @@ const knownPaths = new Set([
   '/videos',
   '/web-development',
   '/products/ace-project-management-software',
-  '/products/ace-calibration-management-system-on-cloud'
+  '/products/ace-calibration-management-system'
 ]);
 
 function isSkippable(pathname: string): boolean {
