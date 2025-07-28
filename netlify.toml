@@ -11,7 +11,7 @@ path = "/products/ace-calibration-management-system"
 
 [[edge_functions]]
 function = "redirect"
-path = "/products/ace-calibration-management-system/*"
+path = "/products/ace-calibration-management-system*"
 
 [[edge_functions]]
 function = "redirect"
