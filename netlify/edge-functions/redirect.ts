@@ -11,11 +11,11 @@ export default async (request: Request) => {
   const routePatterns = [
     {
       pattern: new RegExp(`^(\/${langPattern})?\/products\/ace-calibration-management-system`),
-      targetBase: 'https://cmspath.netlify.app/'
+      targetBase: 'https://cmspath.netlify.app'
     },
     {
       pattern: new RegExp(`^(\/${langPattern})?\/products\/ace-project-management-software`),
-      targetBase: 'https://aceproject-acesoft.netlify.app/'
+      targetBase: 'https://aceproject-acesoft.netlify.app'
     }
   ];
 
