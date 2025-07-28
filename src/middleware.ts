@@ -20,30 +20,15 @@ const intlMiddleware = createIntlMiddleware(routing);
 const keywordRedirectMap: Record<string, string> = {
  
   'production-management-system': '/products/ace-production-management-system',
-
   'payroll': '/products/ace-profit-stand-alone-payroll',
-
   'ppap': '/products/ace-profit-ppap',
-
   'fixed-asset-management': '/products/ace-fixed-asset-management-on-cloud',
-
   'hrms': '/products/ace-profit-stand-alone-hrms',
-
   'erp': '/products/ace-profit-erp',
-
-
-
   'project': '/products/ace-project-management-software',
-
   'aceproject': '/products/ace-project-management-software',
-
-
-
-  'calibration': '/products/ace-calibration-management-system',
-
   'acecms': '/products/ace-calibration-management-system',
-
-  'cms': '/products/ace-calibration-management-system',};
+};
 
 const knownPaths = new Set([
   '/',
