@@ -3,40 +3,39 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 
 const allowedRegions = [
-    'tn',  /* Tamil Nadu */
-    'ka',  /* Karnataka */
-    'mh',  /* Maharashtra */
-    'dl',  /* Delhi */
-    'ts',  /* Telangana */
-    'hr',  /* Haryana */
-    'se',   /* Singapore */
-    'uaedxb', /* UAE Dubai */
-    'uaesh', /* UAE Sharjah */
-    'uaead' /* UAE Abu Dhabi */
+  'tn',  /* Tamil Nadu */
+  'ka',  /* Karnataka */
+  'mh',  /* Maharashtra */
+  'dl',  /* Delhi */
+  'ts',  /* Telangana */
+  'hr',  /* Haryana */
+  'se',   /* Singapore */
+  'uaedxb', /* UAE Dubai */
+  'uaesh', /* UAE Sharjah */
+  'uaead' /* UAE Abu Dhabi */
 ];
 
 const intlMiddleware = createIntlMiddleware(routing);
 
 const keywordRedirectMap: Record<string, string> = {
-    // 'calibration': 'https://home.acecms.in', 
-  // 'acecms': 'https://home.acecms.in',
-  // 'cms': 'https://home.acecms.in',
-  // 'project': 'https://project.acesoftcloud.in',
-  // 'crm': 'https://crm.acesoftcloud.in',
   'production-management-system': '/products/ace-production-management-system',
   'payroll': '/products/ace-profit-stand-alone-payroll',
   'ppap': '/products/ace-profit-ppap',
   'fixed-asset-management': '/products/ace-fixed-asset-management-on-cloud',
   'hrms': '/products/ace-profit-stand-alone-hrms',
   'erp': '/products/ace-profit-erp',
+
   'project': '/products/ace-project-management-software',
   'aceproject': '/products/ace-project-management-software',
+
+  'calibration': '/products/ace-calibration-management-system',
   'acecms': '/products/ace-calibration-management-system',
+  'cms': '/products/ace-calibration-management-system',
 };
 
+// Step: Known paths that should never be redirected
 const knownPaths = new Set([
   '/',
-  '/products',
   '/request_callback',
   '/contact',
   '/about',
@@ -45,7 +44,7 @@ const knownPaths = new Set([
   '/login',
   '/user',
   '/videos',
-  '/web-development',
+  '/products',
   '/products/ace-project-management-software',
   '/products/ace-calibration-management-system'
 ]);
@@ -54,10 +53,11 @@ function isSkippable(pathname: string): boolean {
   return (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.includes('.')
+    pathname.includes('.') // static assets
   );
 }
 
+// Helper: matches keyword
 function getRedirectFromKeyword(pathname: string): string | null {
   for (const keyword in keywordRedirectMap) {
     if (pathname.toLowerCase().includes(keyword.toLowerCase())) {
@@ -103,21 +103,19 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  
-
+  // Keyword redirect 
   const redirectTo = getRedirectFromKeyword(pathname);
   if (redirectTo) {
-    console.log(`[middleware] Keyword redirect → ${redirectTo}`);
+    console.log(`[middleware] Redirect keyword found → ${redirectTo}`);
     return NextResponse.redirect(new URL(redirectTo, request.url));
   }
 
   const basePath = stripLocale(pathname);
-  if (knownPaths.has(basePath) || pathname.startsWith('/products/')|| pathname.startsWith('/admin/edit/')|| pathname.startsWith('/demo/')|| pathname.startsWith('/request_callback/'))
-    {
+  if (knownPaths.has(basePath) || pathname.startsWith('/products/') || pathname.startsWith('/admin/edit/') || pathname.startsWith('/demo/') || pathname.startsWith('/request_callback/')) {
     return response || NextResponse.next();
   }
 
-  // Unknown path. Redirecting to /
+  // All else: redirect to homepage
   return NextResponse.redirect(new URL('/', request.url));
 }
 
