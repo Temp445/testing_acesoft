@@ -111,7 +111,7 @@ export function middleware(request: NextRequest) {
   }
 
   const basePath = stripLocale(pathname);
-  if (knownPaths.has(basePath) || pathname.startsWith('/products/') || pathname.startsWith('/admin/edit/') || pathname.startsWith('/demo/') || pathname.startsWith('/request_callback/')) {
+  if (knownPaths.has(basePath) || pathname.startsWith('/products/') || pathname.startsWith('/admin/edit/') || pathname.startsWith('/demo/') || pathname.startsWith('/request_callback/') || pathname.startsWith('/products/ace-calibration-management-system/') )  {
     return response || NextResponse.next();
   }
 
@@ -121,7 +121,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|api|.*\\..*).*)',
+    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|api|videos|.*\\..*).*)',
   ],
 };
 
