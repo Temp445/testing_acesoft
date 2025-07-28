@@ -31,7 +31,7 @@ const keywordRedirectMap: Record<string, string> = {
   'erp': '/products/ace-profit-erp',
   'project': '/products/ace-project-management-software',
   'aceproject': '/products/ace-project-management-software',
-  'acecms': '/products/ace-calibration-management-system-on-cloud',
+  'acecms': '/products/ace-calibration-management-system',
 };
 
 const knownPaths = new Set([
@@ -47,7 +47,7 @@ const knownPaths = new Set([
   '/videos',
   '/web-development',
   '/products/ace-project-management-software',
-  '/products/ace-calibration-management-system-on-cloud'
+  '/products/ace-calibration-management-system'
 ]);
 
 function isSkippable(pathname: string): boolean {
